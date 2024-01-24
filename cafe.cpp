@@ -1,11 +1,13 @@
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <set>
 #include <vector>
-
+int global_cost = INT32_MAX;
 int dfs(const std::vector<int> &price, int s, int n, int &coupon,
         int total_cost, std::vector<int> &cd, int used) {
   int res = total_cost + (used == 0 ? price[s] : 0);
+  if (res > global_cost) return res;
   if (used == 1) coupon--;
   if (price[s] > 100 && used == 0) coupon++;
   cd[s] = used;
@@ -37,6 +39,7 @@ int dfs(const std::vector<int> &price, int s, int n, int &coupon,
       if (price[i] > 100) coupon++;
     }
   }
+  global_cost = std::min(global_cost, res);
   return res;
 }
 
