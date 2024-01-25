@@ -43,6 +43,15 @@ int dfs(const std::vector<int> &price, int s, int n, int &coupon,
   return res;
 }
 
+int dp(const std::vector<int> &price, int n) {
+  int coupon = 0, total_cost = 0;
+  for (int i = 0; i < n; i++) {
+    if (price[i] > 100) coupon++;
+  }
+  std::vector<std::vector<int>> matrix(coupon, std::vector<int>(price));
+  return 0;
+}
+
 int main() {
   // Data input
   int n;
